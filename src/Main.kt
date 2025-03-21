@@ -35,19 +35,25 @@ fun main() {
  * stored, plus any application logic functions
  */
 class App() {
-    // Constants defining any key values
-    val MAX_CLICKS = 10
+    var objects = mutableListOf<Object>()
 
-    // Data fields
-    var clicks = 0
+    init {
+        objects.add(Object("Block",0,0,"docs/images/block.png"))
 
-    // Application logic functions
-    fun updateClickCount() {
-        clicks++
-        if (clicks > MAX_CLICKS) clicks = MAX_CLICKS
+
     }
+
+    fun scene
+
 }
 
+class Scene(val list: MutableList<Object>){
+
+}
+
+class Object(val name: String, val x: Int, val y: Int, val texture: String?){
+
+}
 
 /**
  * Main UI window (view)
@@ -56,20 +62,27 @@ class App() {
  */
 class MainWindow(val app: App) : JFrame(), ActionListener {
 
-    // Fields to hold the UI elements
-    private lateinit var clicksLabel: JLabel
-    private lateinit var clickButton: JButton
+    private lateinit var upButton: JButton
+    private lateinit var downButton: JButton
+    private lateinit var leftButton: JButton
+    private lateinit var rightButton: JButton
+
+    private lateinit var aButton: JButton
+    private lateinit var bButton: JButton
+
+    private lateinit var scenePanal: JLabel
+
 
     /**
      * Configure the UI and display it
      */
     init {
-        configureWindow()               // Configure the window
+        configureWindow()               // Configure the windows
         addControls()                   // Build the UI
 
         setLocationRelativeTo(null)     // Centre the window
-        isVisible = true                // Make it visible
-
+        isVisible = true
+        this.isFocusable = true  // Make it visible
         updateView()                    // Initialise the UI
     }
 
@@ -78,8 +91,9 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      */
     private fun configureWindow() {
         title = "Kotlin Swing GUI Demo"
-        contentPane.preferredSize = Dimension(600, 350)
+        contentPane.preferredSize = Dimension(600, 800)
         defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
+        background = Color.GRAY
         isResizable = false
         layout = null
 
@@ -92,17 +106,42 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
     private fun addControls() {
         val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 36)
 
-        clicksLabel = JLabel("CLICK INFO HERE")
-        clicksLabel.horizontalAlignment = SwingConstants.CENTER
-        clicksLabel.bounds = Rectangle(50, 50, 500, 100)
-        clicksLabel.font = baseFont
-        add(clicksLabel)
+        upButton = JButton()
+        upButton.bounds = Rectangle(78, 578, 30, 60)
+        upButton.addActionListener(this)
+        add(upButton)
 
-        clickButton = JButton("Click Me!")
-        clickButton.bounds = Rectangle(50,200,500,100)
-        clickButton.font = baseFont
-        clickButton.addActionListener(this)     // Handle any clicks
-        add(clickButton)
+        downButton = JButton()
+        downButton.bounds = Rectangle(78, 670, 30, 60)
+        downButton.addActionListener(this)
+        add(downButton)
+
+        leftButton = JButton()
+        leftButton.bounds = Rectangle(19, 639, 60, 30)
+        leftButton.addActionListener(this)
+        add(leftButton)
+
+        rightButton = JButton()
+        rightButton.bounds = Rectangle(108, 639, 60, 30)
+        rightButton.addActionListener(this)
+        add(rightButton)
+
+        aButton = JButton()
+        aButton.bounds = Rectangle(233, 589, 40, 40)
+        rightButton.addActionListener(this)
+        add(aButton)
+
+        bButton = JButton()
+        bButton.bounds = Rectangle(233, 680, 40, 40)
+        rightButton.addActionListener(this)
+        add(bButton)
+
+        scenePanal = JLabel()
+        scenePanal.bounds = Rectangle(38, 36, 528, 512)
+        scenePanal.background = Color.RED
+        scenePanal.isOpaque = true
+        add(scenePanal)
+
     }
 
 
@@ -111,14 +150,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      * of the application model
      */
     fun updateView() {
-        if (app.clicks == app.MAX_CLICKS) {
-            clicksLabel.text = "Max clicks reached!"
-            clickButton.isEnabled = false
-        }
-        else {
-            clicksLabel.text = "You clicked ${app.clicks} times"
-            clickButton.isEnabled = true
-        }
+        this.requestFocus()
     }
 
     /**
@@ -128,11 +160,10 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      */
     override fun actionPerformed(e: ActionEvent?) {
         when (e?.source) {
-            clickButton -> {
-                app.updateClickCount()
-                updateView()
-            }
+            upButton -> println("UP!!!")
         }
+
+        this.requestFocus()
     }
 
 }
