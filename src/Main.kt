@@ -35,23 +35,11 @@ fun main() {
  * stored, plus any application logic functions
  */
 class App() {
-    var objects = mutableListOf<Object>()
-
-    init {
-        objects.add(Object("Block",0,0,"docs/images/block.png"))
-
-
-    }
-
-    fun scene
-
+    val scene = mutableListOf<Scene>()
+    
 }
 
-class Scene(val list: MutableList<Object>){
-
-}
-
-class Object(val name: String, val x: Int, val y: Int, val texture: String?){
+class Scene(val name: String, val description: String){
 
 }
 
@@ -70,6 +58,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
     private lateinit var aButton: JButton
     private lateinit var bButton: JButton
 
+    private lateinit var textLabel: JLabel
     private lateinit var scenePanal: JLabel
 
 
@@ -106,41 +95,49 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
     private fun addControls() {
         val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 36)
 
-        upButton = JButton()
+        upButton = JButton("N")
         upButton.bounds = Rectangle(78, 578, 30, 60)
         upButton.addActionListener(this)
         add(upButton)
 
-        downButton = JButton()
+        downButton = JButton("S")
         downButton.bounds = Rectangle(78, 670, 30, 60)
         downButton.addActionListener(this)
         add(downButton)
 
-        leftButton = JButton()
+        leftButton = JButton("W")
         leftButton.bounds = Rectangle(19, 639, 60, 30)
         leftButton.addActionListener(this)
         add(leftButton)
 
-        rightButton = JButton()
+        rightButton = JButton("E")
         rightButton.bounds = Rectangle(108, 639, 60, 30)
         rightButton.addActionListener(this)
         add(rightButton)
 
-        aButton = JButton()
+        aButton = JButton("A")
         aButton.bounds = Rectangle(233, 589, 40, 40)
         rightButton.addActionListener(this)
         add(aButton)
 
-        bButton = JButton()
+        bButton = JButton("B")
         bButton.bounds = Rectangle(233, 680, 40, 40)
         rightButton.addActionListener(this)
         add(bButton)
+
+        textLabel = JLabel()
+        textLabel.bounds = Rectangle(38, 196, 528, 160)
+        textLabel.background = Color.GREEN
+        textLabel.isOpaque = true
+        add(textLabel)
 
         scenePanal = JLabel()
         scenePanal.bounds = Rectangle(38, 36, 528, 512)
         scenePanal.background = Color.RED
         scenePanal.isOpaque = true
         add(scenePanal)
+
+
 
     }
 
