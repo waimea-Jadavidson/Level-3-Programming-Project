@@ -36,7 +36,7 @@ fun main() {
  */
 class App() {
     val scene = mutableListOf<Scene>()
-    
+
 }
 
 class Scene(val name: String, val description: String){
