@@ -18,6 +18,7 @@ import java.awt.*
 import java.awt.event.*
 import javax.swing.*
 
+val WIDTH = 3
 
 /**
  * Launch the application
@@ -36,10 +37,26 @@ fun main() {
  */
 class App() {
     val scene = mutableListOf<Scene>()
+    val items = mutableListOf<Item>()
+    val player = Player("John Doe", Pair(0,0))
+
+
+
+    init {
+        scene.add(Scene("Entrance", "<html> The entrance to a large retail unit previously owned by and branded as IKEA, a popular furniture retail chain </html>", Pair(0,0)))
+        scene.add(Scene("Entrance Way", "<html> An expansive room with the boundries hidden in the distance, white flourescent lights hang from the rooth and shelves and items layed out through the room. </html>", Pair(1,0)))
+    }
+
 
 }
 
-class Scene(val name: String, val description: String){
+class Player(val name: String, var playerPosition: Pair<Int, Int>) {}
+
+class Item(val name: String, val description: String){
+
+}
+
+class Scene(val name: String, val description: String, val coords: Pair<Int,Int>, val items: MutableList<Item>?=null){
 
 }
 
@@ -148,6 +165,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      */
     fun updateView() {
         this.requestFocus()
+        textLabel.text = app.scene[(app.player.playerPosition.second* WIDTH)+app.player.playerPosition.first].description
     }
 
     /**
@@ -157,9 +175,28 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      */
     override fun actionPerformed(e: ActionEvent?) {
         when (e?.source) {
-            upButton -> println("UP!!!")
-        }
+            upButton -> {
+                app.player.playerPosition = Pair(app.player.playerPosition.first,(app.player.playerPosition.second+1))
+                println(app.player.playerPosition)
+            }
 
+            downButton -> {
+                app.player.playerPosition = Pair(app.player.playerPosition.first,(app.player.playerPosition.second-1))
+                println(app.player.playerPosition)
+
+            }
+
+            leftButton -> {
+                app.player.playerPosition = Pair((app.player.playerPosition.first -1),app.player.playerPosition.second)
+                println(app.player.playerPosition)
+            }
+
+            rightButton -> {
+                app.player.playerPosition = Pair((app.player.playerPosition.first +1),app.player.playerPosition.second)
+                println(app.player.playerPosition)
+            }
+        }
+        updateView()
         this.requestFocus()
     }
 
