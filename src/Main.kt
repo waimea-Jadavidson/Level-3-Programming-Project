@@ -18,7 +18,6 @@ import java.awt.*
 import java.awt.event.*
 import javax.swing.*
 
-val WIDTH = 3
 
 /**
  * Launch the application
@@ -36,6 +35,8 @@ fun main() {
  * stored, plus any application logic functions
  */
 class App() {
+    val WIDTH = 3
+
     val scene = mutableListOf<Scene>()
     val items = mutableListOf<Item>()
     val player = Player("John Doe", Pair(0,0))
@@ -134,12 +135,12 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
 
         aButton = JButton("A")
         aButton.bounds = Rectangle(233, 589, 40, 40)
-        rightButton.addActionListener(this)
+        aButton.addActionListener(this)
         add(aButton)
 
         bButton = JButton("B")
         bButton.bounds = Rectangle(233, 680, 40, 40)
-        rightButton.addActionListener(this)
+        bButton.addActionListener(this)
         add(bButton)
 
         textLabel = JLabel()
@@ -165,7 +166,8 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      */
     fun updateView() {
         this.requestFocus()
-        textLabel.text = app.scene[(app.player.playerPosition.second* WIDTH)+app.player.playerPosition.first].description
+        println("VIEW: " + app.player.playerPosition)
+        textLabel.text = app.scene[(app.player.playerPosition.second* app.WIDTH)+app.player.playerPosition.first].description
     }
 
     /**
@@ -174,14 +176,16 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      * then refreshing the UI view
      */
     override fun actionPerformed(e: ActionEvent?) {
+        println(e?.source)
+
         when (e?.source) {
             upButton -> {
-                app.player.playerPosition = Pair(app.player.playerPosition.first,(app.player.playerPosition.second+1))
+                app.player.playerPosition = Pair(app.player.playerPosition.first,(app.player.playerPosition.second-1))
                 println(app.player.playerPosition)
             }
 
             downButton -> {
-                app.player.playerPosition = Pair(app.player.playerPosition.first,(app.player.playerPosition.second-1))
+                app.player.playerPosition = Pair(app.player.playerPosition.first,(app.player.playerPosition.second+1))
                 println(app.player.playerPosition)
 
             }
@@ -197,7 +201,6 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
             }
         }
         updateView()
-        this.requestFocus()
     }
 
 }
