@@ -35,19 +35,109 @@ fun main() {
  * stored, plus any application logic functions
  */
 class App() {
-    val WIDTH = 3
+    val WIDTH = 2
+    val HEIGHT = 2
 
     val scene = mutableListOf<Scene>()
     val items = mutableListOf<Item>()
-    val player = Player("John Doe", Pair(0,0))
-
+    val player = Player("John Doe", Pair(0, 0))
 
 
     init {
-        scene.add(Scene("Entrance", "<html> The entrance to a large retail unit previously owned by and branded as IKEA, a popular furniture retail chain </html>", Pair(0,0)))
-        scene.add(Scene("Entrance Way", "<html> An expansive room with the boundries hidden in the distance, white flourescent lights hang from the rooth and shelves and items layed out through the room. </html>", Pair(1,0)))
+        scene.add(
+            Scene(
+                "Entrance",
+                "<html> The entrance to a large retail unit previously owned by and branded as IKEA, a popular furniture retail chain </html>",
+                Pair(0, 0)
+            )
+        )
+        scene.add(
+            Scene(
+                "Entrance Way",
+                "<html> An expansive room with the boundries hidden in the distance, white flourescent lights hang from the rooth and shelves and items layed out through the room. </html>",
+                Pair(1, 0)
+            )
+        )
+        scene.add(
+            Scene(
+                "BLANK",
+                "<html> BLANK",
+                Pair(2, 0)
+            )
+        )
+        scene.add(
+            Scene(
+                "BLANK",
+                "<html> BLANK",
+                Pair(0, 1)
+            )
+        )
+        scene.add(
+            Scene(
+                "BLANK",
+                "<html> BLANK",
+                Pair(1, 1)
+            )
+        )
+        scene.add(
+            Scene(
+                "BLANK",
+                "<html> BLANK",
+                Pair(2, 1)
+            )
+        )
+        scene.add(
+            Scene(
+                "BLANK",
+                "<html> BLANK",
+                Pair(0, 2)
+            )
+        )
+        scene.add(
+            Scene(
+                "BLANK",
+                "<html> BLANK",
+                Pair(1, 2)
+            )
+        )
+        scene.add(
+            Scene(
+                "BLANK",
+                "<html> BLANK",
+                Pair(2, 2)
+            )
+        )
+
     }
 
+    fun playerMovement(source: String) {
+        when (source) {
+            "u" ->{
+                if (player.playerPosition.second > 0){
+                    player.playerPosition = Pair(player.playerPosition.first,(player.playerPosition.second-1))
+                }
+            }
+            "d"->{
+                if((player.playerPosition.second < HEIGHT)){
+                    player.playerPosition = Pair(player.playerPosition.first,(player.playerPosition.second+1))
+                }
+
+            }
+            "l"->{
+                if(player.playerPosition.first > 0){
+                    player.playerPosition = Pair((player.playerPosition.first -1),player.playerPosition.second)
+                }
+
+            }
+            "r"->{
+                if(player.playerPosition.first < WIDTH){
+                    player.playerPosition = Pair((player.playerPosition.first +1),player.playerPosition.second)
+                }
+
+            }
+
+        }
+    }
 
 }
 
@@ -180,24 +270,19 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
 
         when (e?.source) {
             upButton -> {
-                app.player.playerPosition = Pair(app.player.playerPosition.first,(app.player.playerPosition.second-1))
-                println(app.player.playerPosition)
+                app.playerMovement("u")
             }
 
             downButton -> {
-                app.player.playerPosition = Pair(app.player.playerPosition.first,(app.player.playerPosition.second+1))
-                println(app.player.playerPosition)
-
+                app.playerMovement("d")
             }
 
             leftButton -> {
-                app.player.playerPosition = Pair((app.player.playerPosition.first -1),app.player.playerPosition.second)
-                println(app.player.playerPosition)
+                app.playerMovement("l")
             }
 
             rightButton -> {
-                app.player.playerPosition = Pair((app.player.playerPosition.first +1),app.player.playerPosition.second)
-                println(app.player.playerPosition)
+                app.playerMovement("r")
             }
         }
         updateView()

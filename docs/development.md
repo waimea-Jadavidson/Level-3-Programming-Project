@@ -36,3 +36,14 @@ This is a screenshot of the intial player movement around the map
 
 ---
 
+## Date: 1/04/2025
+
+Improved movement system with error checking to prevent out of map occurrence. The movement has been incorporated into the function ```playerMovement()```.
+This keeps the coder safer as it's stored in the app instead of the view.
+
+![img_4.png](img_4.png)
+![img_6.png](img_6.png)
+![img_5.png](img_5.png)
+
+---
+
