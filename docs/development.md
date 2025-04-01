@@ -47,3 +47,14 @@ This keeps the coder safer as it's stored in the app instead of the view.
 
 ---
 
+## Date: 2/04/2025
+
+I have taken inspiration from James on how he has done his scenes, I found my current method to be very cluttered.
+By using this I can make my code easier and clear to read and debug later on.
+
+![img_7.png](img_7.png)
+
+---
+
+
+

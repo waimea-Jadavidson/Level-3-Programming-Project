@@ -2,12 +2,12 @@
  * =====================================================================
  * Programming Project for NCEA Level 3, Standard 91906
  * ---------------------------------------------------------------------
- * Project Name:   PROJECT NAME HERE
+ * Project Name:   SCP 3008
  * Project Author: Jasper Davidson
  * GitHub Repo:    https://github.com/waimea-Jsadavidson/Level-3-Programming-Project
  * ---------------------------------------------------------------------
  * Notes:
- * PROJECT NOTES HERE
+ * This game is a horror/exploration based adventure of SCP 3008. For the uninitiated that is a non-euclidean haunted IKEA
  * =====================================================================
  */
 
@@ -17,6 +17,8 @@ import com.formdev.flatlaf.FlatDarkLaf
 import java.awt.*
 import java.awt.event.*
 import javax.swing.*
+
+import gameMap.IkeaScene
 
 
 /**
@@ -35,81 +37,17 @@ fun main() {
  * stored, plus any application logic functions
  */
 class App() {
-    val WIDTH = 2
-    val HEIGHT = 2
+    val MAX_WIDTH = 2
+    val MAX_HEIGHT = 2
 
-    val scene = mutableListOf<Scene>()
-    val items = mutableListOf<Item>()
-    val player = Player("John Doe", Pair(0, 0))
+    val player = Player(Pair(0, 0))
 
 
     init {
-        scene.add(
-            Scene(
-                "Entrance",
-                "<html> The entrance to a large retail unit previously owned by and branded as IKEA, a popular furniture retail chain </html>",
-                Pair(0, 0)
-            )
-        )
-        scene.add(
-            Scene(
-                "Entrance Way",
-                "<html> An expansive room with the boundries hidden in the distance, white flourescent lights hang from the rooth and shelves and items layed out through the room. </html>",
-                Pair(1, 0)
-            )
-        )
-        scene.add(
-            Scene(
-                "BLANK",
-                "<html> BLANK",
-                Pair(2, 0)
-            )
-        )
-        scene.add(
-            Scene(
-                "BLANK",
-                "<html> BLANK",
-                Pair(0, 1)
-            )
-        )
-        scene.add(
-            Scene(
-                "BLANK",
-                "<html> BLANK",
-                Pair(1, 1)
-            )
-        )
-        scene.add(
-            Scene(
-                "BLANK",
-                "<html> BLANK",
-                Pair(2, 1)
-            )
-        )
-        scene.add(
-            Scene(
-                "BLANK",
-                "<html> BLANK",
-                Pair(0, 2)
-            )
-        )
-        scene.add(
-            Scene(
-                "BLANK",
-                "<html> BLANK",
-                Pair(1, 2)
-            )
-        )
-        scene.add(
-            Scene(
-                "BLANK",
-                "<html> BLANK",
-                Pair(2, 2)
-            )
-        )
 
     }
 
+    // This function provides an easy way to do player movement and error checking for that movement in one method.
     fun playerMovement(source: String) {
         when (source) {
             "u" ->{
@@ -118,7 +56,7 @@ class App() {
                 }
             }
             "d"->{
-                if((player.playerPosition.second < HEIGHT)){
+                if((player.playerPosition.second < MAX_HEIGHT)){
                     player.playerPosition = Pair(player.playerPosition.first,(player.playerPosition.second+1))
                 }
 
@@ -130,7 +68,7 @@ class App() {
 
             }
             "r"->{
-                if(player.playerPosition.first < WIDTH){
+                if(player.playerPosition.first < MAX_WIDTH){
                     player.playerPosition = Pair((player.playerPosition.first +1),player.playerPosition.second)
                 }
 
@@ -141,15 +79,9 @@ class App() {
 
 }
 
-class Player(val name: String, var playerPosition: Pair<Int, Int>) {}
+// Player Class here as a legacy feature
+class Player(var playerPosition: Pair<Int, Int>) {}
 
-class Item(val name: String, val description: String){
-
-}
-
-class Scene(val name: String, val description: String, val coords: Pair<Int,Int>, val items: MutableList<Item>?=null){
-
-}
 
 /**
  * Main UI window (view)
@@ -187,7 +119,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      * Configure the main window
      */
     private fun configureWindow() {
-        title = "Kotlin Swing GUI Demo"
+        title = "SCP 3008"
         contentPane.preferredSize = Dimension(600, 800)
         defaultCloseOperation = WindowConstants.EXIT_ON_CLOSE
         background = Color.GRAY
@@ -257,7 +189,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
     fun updateView() {
         this.requestFocus()
         println("VIEW: " + app.player.playerPosition)
-        textLabel.text = app.scene[(app.player.playerPosition.second* app.WIDTH)+app.player.playerPosition.first].description
+        textLabel.text = IkeaScene.sceneFromPosition(app.player.playerPosition)?.description
     }
 
     /**
