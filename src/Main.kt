@@ -18,7 +18,10 @@ import java.awt.*
 import java.awt.event.*
 import javax.swing.*
 
-import gameMap.IkeaScene
+import gameMap.IkeaScenes
+import gameMap.MazeScenes
+import gameMap.Map
+import java.util.Objects
 
 
 /**
@@ -26,8 +29,10 @@ import gameMap.IkeaScene
  */
 fun main() {
     FlatDarkLaf.setup()     // Flat, dark look-and-feel
-    val app = App()         // Create the app model
-    MainWindow(app)         // Create and show the UI, using the app model
+    val app = App() // Create the app model
+    MainWindow(app) // Create and show the UI, using the app model
+
+
 }
 
 
@@ -41,10 +46,38 @@ class App() {
     val MAX_HEIGHT = 2
 
     val player = Player(Pair(0, 0))
-
+    var clue = ""
+    var currentMap : Map = IkeaScenes
 
     init {
 
+    }
+
+    fun showClue(){
+        clue = currentMap.sceneFromPosition(player.playerPosition)?.clue.toString()
+        println("CLUE: $clue")
+    }
+
+    fun mapChange(){
+        if (currentMap.name == "IKEA" &&
+            currentMap.sceneFromPosition(player.playerPosition)?.name == "Home Section Maze") {
+            currentMap = MazeScenes
+            player.playerPosition = Pair(0,0)
+            println("CURRENT MAP: $currentMap")
+        }
+       else if(currentMap.name == "MAZE" &&
+            currentMap.sceneFromPosition(player.playerPosition)?.name == "Sofa Jungle") {
+            currentMap = IkeaScenes
+            println("CURRENT MAP: $currentMap")
+            player.playerPosition = Pair(1,2)
+            currentMap = IkeaScenes
+            println("SCENE: ${currentMap.sceneFromPosition(player.playerPosition)?.name}")
+        }
+    }
+
+    fun hideclue(){
+        clue = "..."
+        println("CLUE: $clue")
     }
 
     // This function provides an easy way to do player movement and error checking for that movement in one method.
@@ -73,8 +106,8 @@ class App() {
                 }
 
             }
-
         }
+        hideclue()
     }
 
 }
@@ -98,8 +131,9 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
     private lateinit var aButton: JButton
     private lateinit var bButton: JButton
 
-    private lateinit var textLabel: JLabel
-    private lateinit var scenePanal: JLabel
+    private lateinit var sceneNameLabel: JLabel
+    private lateinit var descriptionLabel: JLabel
+    private lateinit var clueLabel: JLabel
 
 
     /**
@@ -134,6 +168,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      */
     private fun addControls() {
         val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 36)
+        val headerFont = Font(Font.SERIF, Font.PLAIN, 50)
 
         upButton = JButton("N")
         upButton.bounds = Rectangle(78, 578, 30, 60)
@@ -165,18 +200,27 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
         bButton.addActionListener(this)
         add(bButton)
 
-        textLabel = JLabel()
-        textLabel.bounds = Rectangle(38, 196, 528, 160)
-        textLabel.background = Color.GREEN
-        textLabel.isOpaque = true
-        add(textLabel)
+        sceneNameLabel = JLabel()
+        sceneNameLabel.horizontalAlignment = (SwingConstants.CENTER)
+        sceneNameLabel.font = headerFont
+        sceneNameLabel.bounds = Rectangle(38, 10, 528, 100)
+        sceneNameLabel.background = Color(75, 80, 82)
+        sceneNameLabel.isOpaque = true
+        add(sceneNameLabel)
 
-        scenePanal = JLabel()
-        scenePanal.bounds = Rectangle(38, 36, 528, 512)
-        scenePanal.background = Color.RED
-        scenePanal.isOpaque = true
-        add(scenePanal)
+        clueLabel = JLabel()
+        clueLabel.horizontalAlignment = (SwingConstants.CENTER)
+        clueLabel.bounds = Rectangle(38, 470, 528, 100)
+        clueLabel.background = Color(75, 80, 82)
+        clueLabel.isOpaque = true
+        add(clueLabel)
 
+        descriptionLabel = JLabel()
+        descriptionLabel.horizontalAlignment = (SwingConstants.CENTER)
+        descriptionLabel.bounds = Rectangle(38, 150, 528, 300)
+        descriptionLabel.background = Color(75, 80, 82)
+        descriptionLabel.isOpaque = true
+        add(descriptionLabel)
 
 
     }
@@ -189,7 +233,11 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
     fun updateView() {
         this.requestFocus()
         println("VIEW: " + app.player.playerPosition)
-        textLabel.text = IkeaScene.sceneFromPosition(app.player.playerPosition)?.description
+        sceneNameLabel.text = app.currentMap.sceneFromPosition(app.player.playerPosition)?.name
+        descriptionLabel.text = app.currentMap.sceneFromPosition(app.player.playerPosition)?.description
+        clueLabel.text = app.clue
+
+        sceneNameLabel.foreground = if(app.currentMap.name == "IKEA") Color.blue else Color.red
     }
 
     /**
@@ -215,6 +263,14 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
 
             rightButton -> {
                 app.playerMovement("r")
+            }
+
+            aButton -> {
+                app.showClue()
+            }
+
+            bButton ->{
+                app.mapChange()
             }
         }
         updateView()
