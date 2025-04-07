@@ -56,5 +56,35 @@ By using this I can make my code easier and clear to read and debug later on.
 
 ---
 
+## Date: 8/04/2025
+
+### Clues Update
+
+I have added clues, a clue screen and now the gameplay revolves around this feature to naviagte through the map.
+
+![img_8.png](img_8.png)
+![img_9.png](img_9.png)
+![img_10.png](img_10.png)
+![img_11.png](img_11.png)
+![img_17.png](img_17.png)
+
+---
+
+## Date: 8/04/2025
+
+### Scene Improvements
+
+I have improved on my scenes.kt file and fixed a bug where scenes were storing into one list and overwriting each other.
+This was causing a bug where switching between two levels became impossible and you would get stuck.
+
+![img_12.png](img_12.png)
+![img_13.png](img_13.png)
+![img_14.png](img_14.png)
+![img_15.png](img_15.png)
+![img_16.png](img_16.png)
+![img_18.png](img_18.png)
+
+--- 
+
 
 

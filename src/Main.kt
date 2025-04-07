@@ -17,11 +17,11 @@ import com.formdev.flatlaf.FlatDarkLaf
 import java.awt.*
 import java.awt.event.*
 import javax.swing.*
+import javax.swing.Timer;
 
 import gameMap.IkeaScenes
 import gameMap.MazeScenes
 import gameMap.Map
-import java.util.Objects
 
 
 /**
@@ -66,7 +66,7 @@ class App() {
             println("CURRENT MAP: $currentMap")
         }
        else if(currentMap.name == "MAZE" &&
-            currentMap.sceneFromPosition(player.playerPosition)?.name == "Sofa Jungle") {
+            currentMap.sceneFromPosition(player.playerPosition)?.name == "Shifting Hallway") {
             currentMap = IkeaScenes
             println("CURRENT MAP: $currentMap")
             player.playerPosition = Pair(1,2)
@@ -134,6 +134,13 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
     private lateinit var sceneNameLabel: JLabel
     private lateinit var descriptionLabel: JLabel
     private lateinit var clueLabel: JLabel
+
+    // This timer is what will provide some slowness to peoples movement, making actions more deliberate.
+    private lateinit var moveTimer: Timer
+
+    // Stamina Label that works with timer to limit movement
+    private lateinit var staminaLabel: JLabel
+    private lateinit var staminaBar: JLabel
 
 
     /**
@@ -222,6 +229,20 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
         descriptionLabel.isOpaque = true
         add(descriptionLabel)
 
+        moveTimer = Timer(3000, this)
+        moveTimer.isRepeats = false
+
+        staminaLabel = JLabel("Stamina")
+        staminaLabel.horizontalAlignment = (SwingConstants.CENTER)
+        staminaLabel.bounds = Rectangle(300, 589, 70, 30)
+        staminaLabel.foreground = Color.WHITE
+        add(staminaLabel)
+
+        staminaBar = JLabel()
+        staminaBar.bounds = Rectangle(300, 589, 70, 30)
+        staminaBar.background = Color(39, 112, 230)
+        staminaBar.isOpaque = true
+        add(staminaBar)
 
     }
 
@@ -246,8 +267,6 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
      * then refreshing the UI view
      */
     override fun actionPerformed(e: ActionEvent?) {
-        println(e?.source)
-
         when (e?.source) {
             upButton -> {
                 app.playerMovement("u")
@@ -263,6 +282,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
 
             rightButton -> {
                 app.playerMovement("r")
+
             }
 
             aButton -> {
@@ -274,6 +294,12 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
             }
         }
         updateView()
+        staminaBar.background = Color.BLACK
+        moveTimer.start()
+        while(moveTimer.isRunning()){
+            // Wait
+        }
+        staminaBar.background = Color(39, 112, 230)
     }
 
 }

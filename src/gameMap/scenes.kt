@@ -68,18 +68,18 @@ object IkeaScenes : Map("IKEA") {
 
         // Middle Row Descriptions
         lostCustomerServices.description = "<html>A dusty help desk with a blinking computer screen. The screen only types back cryptic messages like \"Stock Unavailable\" and \"Employee Assistance Required.\"</html>"
-        lostCustomerServices.clue = ""
-
-        theNightMarket.description = "<html>A survivor camp built from scavenged shelves and pallets. People trade for food, batteries, and tools. A handwritten sign warns: \"STORE CLOSES AT 10 PM.\"</html>"
-        theNightMarket.clue = ""
-
-        homeSectionMaze.description = "<html>A twisted labyrinth of sofas, bookshelves, and coffee tables arranged in unnatural patterns. Walking in a straight line somehow leads you back to where you started.</html>"
-        homeSectionMaze.clue = "<html>\"To find your way through twists and turns,\n" +
+        lostCustomerServices.clue ="<html>\"To find your way through twists and turns,\n" +
                 "Where couches sit and shelves burn,\n" +
                 "Look for the place where paths collide,\n" +
                 "Where every corner’s a place to hide.\n" +
                 "A maze of furniture, walls of cheer,\n" +
                 "Step carefully, the exit’s near.\"</html>"
+
+        theNightMarket.description = "<html>A survivor camp built from scavenged shelves and pallets. People trade for food, batteries, and tools. A handwritten sign warns: \"STORE CLOSES AT 10 PM.\"</html>"
+        theNightMarket.clue = ""
+
+        homeSectionMaze.description = "<html>A twisted labyrinth of sofas, bookshelves, and coffee tables arranged in unnatural patterns. Walking in a straight line somehow leads you back to where you started.</html>"
+        homeSectionMaze.clue =""
 
         // Bottom Row Descriptions
         warehouseDepths.description = "<html>Towering storage racks filled with mislabeled boxes. Some boxes contain normal IKEA products—others hold things that move when no one's looking.</html>"
@@ -128,7 +128,12 @@ object MazeScenes : Map("MAZE"){
     init{
         // Top Row Description
         sofaJungle.description = "<html>A disorganized pile of mismatched sofas, armchairs, and recliners. Pillows are scattered everywhere, and a faint scent of furniture polish lingers in the air.</html>"
-        sofaJungle.clue = ""
+        sofaJungle.clue = "\"At the center, all paths meet,\n" +
+                "A glass reflection shows your feat.\n" +
+                "Look for where the table lies,\n" +
+                "The path ahead is full of lies.\n" +
+                "Where the walls shift, find your way,\n" +
+                "And through the door, you'll see the day.\""
 
         shelvingLabyrinth.description = "<html>Tall bookshelves that seem to go on forever, each path leading to more bookshelves. It's easy to get lost, and the shelves appear to shift slightly when you're not looking.</html>"
         shelvingLabyrinth.clue = ""
@@ -141,15 +146,10 @@ object MazeScenes : Map("MAZE"){
         storageStacks.clue = ""
 
         heartOfTheMaze.description = "<html>The central section where paths cross and overlap. A massive glass coffee table sits in the middle, reflecting the surroundings like a distorted mirror. This spot feels oddly familiar—like it might connect to another place.</html>"
-        heartOfTheMaze.clue = "\"At the center, all paths meet,\n" +
-                "A glass reflection shows your feat.\n" +
-                "Look for where the table lies,\n" +
-                "The path ahead is full of lies.\n" +
-                "Where the walls shift, find your way,\n" +
-                "And through the door, you'll see the day.\""
+        heartOfTheMaze.clue = "The table reflects what you seek the most — the scent of bread drifts from the east"
 
         ikeaKitchenTrap.description = "<html>A section filled with fake kitchen setups. The aroma of fresh bread wafts from one area, but you can't find the source. A door behind the fridge seems suspiciously out of place.</html>"
-        ikeaKitchenTrap.clue = ""
+        ikeaKitchenTrap.clue = "\"Walls shift when doors are fed. Try the path that never led.\" Burnt Access Code (757***)"
 
         // Bottom Row Description
         loungeParadise.description = "<html>A perfect living room setup with soft lighting and a huge flat-screen TV. But the remote is nowhere to be found, and the TV always seems to be stuck on static.</html>"
@@ -165,6 +165,8 @@ object MazeScenes : Map("MAZE"){
 
 
     }
+
+    object
 
 
 }
