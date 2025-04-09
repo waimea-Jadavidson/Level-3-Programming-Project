@@ -61,10 +61,10 @@ object IkeaScenes : Map("IKEA") {
                 "Follow the hum, and you’ll be right.\"</html>"
 
         fallenDisplay.description = "<html>A collapsed showroom setup with broken furniture and scattered price tags. A single security camera, unplugged but still glowing red, watches from above.</html>"
-        fallenDisplay.clue = ""
+        fallenDisplay.clue = "No Clue, keep looking!!!"
 
         theFakeExit.description = "<html>A glowing red \"EXIT\" sign hangs above an archway. Those who enter come out the other side, back where they started.</html>"
-        theFakeExit.clue = ""
+        theFakeExit.clue = "No Clue, keep looking!!!"
 
         // Middle Row Descriptions
         lostCustomerServices.description = "<html>A dusty help desk with a blinking computer screen. The screen only types back cryptic messages like \"Stock Unavailable\" and \"Employee Assistance Required.\"</html>"
@@ -76,20 +76,20 @@ object IkeaScenes : Map("IKEA") {
                 "Step carefully, the exit’s near.\"</html>"
 
         theNightMarket.description = "<html>A survivor camp built from scavenged shelves and pallets. People trade for food, batteries, and tools. A handwritten sign warns: \"STORE CLOSES AT 10 PM.\"</html>"
-        theNightMarket.clue = ""
+        theNightMarket.clue = "No Clue, keep looking!!!"
 
         homeSectionMaze.description = "<html>A twisted labyrinth of sofas, bookshelves, and coffee tables arranged in unnatural patterns. Walking in a straight line somehow leads you back to where you started.</html>"
-        homeSectionMaze.clue =""
+        homeSectionMaze.clue ="No Clue, keep looking!!!"
 
         // Bottom Row Descriptions
         warehouseDepths.description = "<html>Towering storage racks filled with mislabeled boxes. Some boxes contain normal IKEA products—others hold things that move when no one's looking.</html>"
-        homeSectionMaze.clue = ""
+        homeSectionMaze.clue = "No Clue, keep looking!!!"
 
         endlessAisles.description = "<html>Infinite rows of shelves stocked with identical items. A faint, distorted voice over the intercom repeats, \"Attention shoppers, the store is now closed.\"</html>"
-        endlessAisles.clue = ""
+        endlessAisles.clue = "No Clue, keep looking!!!"
 
         meatballStorage.description = "<html>A freezer room filled with metal trays of IKEA meatballs. Some trays are warm, as if freshly prepared… but the kitchen is nowhere in sight.</html>"
-        meatballStorage.clue = ""
+        meatballStorage.clue = "No Clue, keep looking!!!"
 
 
 
@@ -128,45 +128,80 @@ object MazeScenes : Map("MAZE"){
     init{
         // Top Row Description
         sofaJungle.description = "<html>A disorganized pile of mismatched sofas, armchairs, and recliners. Pillows are scattered everywhere, and a faint scent of furniture polish lingers in the air.</html>"
-        sofaJungle.clue = "\"At the center, all paths meet,\n" +
+        sofaJungle.clue = "<html>\"At the center, all paths meet,\n" +
                 "A glass reflection shows your feat.\n" +
                 "Look for where the table lies,\n" +
                 "The path ahead is full of lies.\n" +
                 "Where the walls shift, find your way,\n" +
-                "And through the door, you'll see the day.\""
+                "And through the door, you'll see the day.\"</html>No Clue, keep looking!!!"
 
         shelvingLabyrinth.description = "<html>Tall bookshelves that seem to go on forever, each path leading to more bookshelves. It's easy to get lost, and the shelves appear to shift slightly when you're not looking.</html>"
-        shelvingLabyrinth.clue = ""
+        shelvingLabyrinth.clue = "No Clue!!! Keep Looking!!!"
 
         cushionedDeadEnd.description = "<html>A cozy nook surrounded by cushions and throws. It looks inviting, but the way forward is blocked by a towering wall of fabric samples.</html>"
-        cushionedDeadEnd.clue = ""
+        cushionedDeadEnd.clue = "No Clue!!! Keep Looking!!!"
 
         // Middle Row Description
         storageStacks.description = "<html>Boxes stacked high, with labels too blurry to read. Some boxes seem to have moved on their own, leaving a faint trail in the dust.</html>"
-        storageStacks.clue = ""
+        storageStacks.clue = "No Clue!!! Keep Looking!!!"
 
         heartOfTheMaze.description = "<html>The central section where paths cross and overlap. A massive glass coffee table sits in the middle, reflecting the surroundings like a distorted mirror. This spot feels oddly familiar—like it might connect to another place.</html>"
-        heartOfTheMaze.clue = "The table reflects what you seek the most — the scent of bread drifts from the east"
+        heartOfTheMaze.clue = "The table reflects what you seek the most — the scent of bread drifts from the South"
 
         ikeaKitchenTrap.description = "<html>A section filled with fake kitchen setups. The aroma of fresh bread wafts from one area, but you can't find the source. A door behind the fridge seems suspiciously out of place.</html>"
         ikeaKitchenTrap.clue = "\"Walls shift when doors are fed. Try the path that never led.\" Burnt Access Code (757***)"
 
         // Bottom Row Description
         loungeParadise.description = "<html>A perfect living room setup with soft lighting and a huge flat-screen TV. But the remote is nowhere to be found, and the TV always seems to be stuck on static.</html>"
-        loungeParadise.clue = ""
+        loungeParadise.clue = "No Clue!!! Keep Looking!!!"
 
         shiftingHallway.description = "<html>A narrow corridor of dimly lit hallway furniture. The walls feel like they’re closing in, and the path ahead feels uncertain. The floor seems to shift occasionally.</html>"
-        shiftingHallway.clue = ""
+        shiftingHallway.clue = "No Clue!!! Keep Looking!!!"
 
         hiddenDoor.description = "<html>A plain door behind a bookshelf in a corner. There's a faint scratching sound from the other side. It’s locked but you feel as if someone’s watching from the other side.</html>"
-        hiddenDoor.clue = ""
+        hiddenDoor.clue = "No Clue!!! Keep Looking!!!"
 
 
 
 
     }
+}
 
-    object
+object BackroomOfficeScenes: Map("BACKROOMS"){
+    init {
+
+        val serverRoom = Location(scenes,"Server Room", Pair(0, 0))
+        val HRDepartment = Location(scenes,"HR Department", Pair(0, 1))
+        val emergencyStairwell = Location(scenes,"Emergency Stairwell", Pair(0, 2))
+
+        // Middle Row
+        val adminCubicles = Location(scenes,"Admin Cubicles", Pair(1, 0))
+        val securityOffice = Location(scenes,"Security Office", Pair(1, 1))
+        val breakroom6B = Location(scenes,"Breakroom 6B", Pair(1, 2))
+
+        // Bottom Row
+        val filingVault = Location(scenes,"Filing Vault", Pair(2, 0))
+        val managerOfficeDoor = Location(scenes,"Manager’s Office Door", Pair(2, 1))
+        val lockedArchives = Location(scenes,"Locked Archives", Pair(2, 2))
+
+        serverRoom.description = "<html>Blades of fans spin endlessly. Cables crawl like vines across the floor. The servers beep in a pattern that sounds almost like Morse code.</html>"
+
+        HRDepartment.description = "<html>Empty chairs and shredded paperwork. A complaint form sits half-completed: \"He never clocked out. He never left.\"</html>"
+
+        emergencyStairwell.description = "<html>The stairs descend forever. A red light pulses below. There’s no echo from your footsteps.</html>"
+
+        adminCubicles.description = "<html>Gray partitions form a soul-crushing maze. Phones ring with no callers. A calendar still shows 1999.</html>"
+
+        securityOffice.description = "<html>Monitors flicker between camera feeds and static. One shows Breakroom 6B. A sticky note says: \"He’s still watching.\"</html>"
+
+        breakroom6B.description = "<html>An ordinary breakroom—except the food is warm, and the clock always reads 6:66. Something knocks gently from the vending machine.</html>"
+
+        filingVault.description = "<html>Rows of cabinets labeled in foreign symbols. One drawer contains a photo of the player—taken moments ago.</html>"
+
+        managerOfficeDoor.description = "<html>A thick wooden door sealed by a keypad and scanner. Above it, a plaque: \"M. GRANGER – GENERAL MANAGER.\" It hums softly.</html>"
+
+        lockedArchives.description = "<html>Files are chained shut and nailed to the wall. A faint heartbeat echoes through the room. One file folder is missing.</html>"
 
 
+    }
 }

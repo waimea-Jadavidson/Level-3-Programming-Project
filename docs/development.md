@@ -86,5 +86,12 @@ This was causing a bug where switching between two levels became impossible and 
 
 --- 
 
+## Date: 9/04/2025
+
+### Gameplaye
+
+I have added a timer to disable ui to slow down player movement so they have to think.
+![img_19.png](img_19.png)
+
 
 

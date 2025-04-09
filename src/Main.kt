@@ -21,6 +21,7 @@ import javax.swing.Timer;
 
 import gameMap.IkeaScenes
 import gameMap.MazeScenes
+import gameMap.BackroomOfficeScenes
 import gameMap.Map
 
 
@@ -49,6 +50,10 @@ class App() {
     var clue = ""
     var currentMap : Map = IkeaScenes
 
+    // These are gameplay related flags, the player is hunting for a clue to unlock the managers office
+    var foundPartialClue = false
+    var foundFullClue = false
+
     init {
 
     }
@@ -56,6 +61,10 @@ class App() {
     fun showClue(){
         clue = currentMap.sceneFromPosition(player.playerPosition)?.clue.toString()
         println("CLUE: $clue")
+
+        if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Ikea Kitchen Trap"){
+            foundPartialClue = true
+        }
     }
 
     fun mapChange(){
@@ -67,10 +76,9 @@ class App() {
         }
        else if(currentMap.name == "MAZE" &&
             currentMap.sceneFromPosition(player.playerPosition)?.name == "Shifting Hallway") {
-            currentMap = IkeaScenes
+            currentMap = BackroomOfficeScenes
             println("CURRENT MAP: $currentMap")
             player.playerPosition = Pair(1,2)
-            currentMap = IkeaScenes
             println("SCENE: ${currentMap.sceneFromPosition(player.playerPosition)?.name}")
         }
     }
@@ -141,6 +149,8 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
     // Stamina Label that works with timer to limit movement
     private lateinit var staminaLabel: JLabel
     private lateinit var staminaBar: JLabel
+
+    var enableUI = false
 
 
     /**
@@ -230,7 +240,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
         add(descriptionLabel)
 
         moveTimer = Timer(3000, this)
-        moveTimer.isRepeats = false
+        moveTimer.setRepeats(false)
 
         staminaLabel = JLabel("Stamina")
         staminaLabel.horizontalAlignment = (SwingConstants.CENTER)
@@ -258,7 +268,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
         descriptionLabel.text = app.currentMap.sceneFromPosition(app.player.playerPosition)?.description
         clueLabel.text = app.clue
 
-        sceneNameLabel.foreground = if(app.currentMap.name == "IKEA") Color.blue else Color.red
+        sceneNameLabel.foreground = if(app.currentMap.name == "IKEA"){Color.blue} else if(app.currentMap.name == "MAZE"){Color.red}  else {Color.yellow}
     }
 
     /**
@@ -270,37 +280,57 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
         when (e?.source) {
             upButton -> {
                 app.playerMovement("u")
+                enableUI = false
             }
 
             downButton -> {
                 app.playerMovement("d")
+                enableUI = false
             }
 
             leftButton -> {
                 app.playerMovement("l")
+                enableUI = false
             }
 
             rightButton -> {
                 app.playerMovement("r")
-
+                enableUI = false
             }
 
             aButton -> {
                 app.showClue()
+                enableUI = false
             }
 
             bButton ->{
                 app.mapChange()
+                enableUI = false
+            }
+
+            moveTimer ->{
+                println("TIMER: FINISHED")
+                moveTimer.stop()
+                enableUI = true
             }
         }
-        updateView()
-        staminaBar.background = Color.BLACK
-        moveTimer.start()
-        while(moveTimer.isRunning()){
-            // Wait
+
+        if (enableUI) {
+            arrayOf(upButton, downButton, leftButton, rightButton, aButton, bButton).forEach { i ->
+                i.isEnabled = true
+            }
+            staminaBar.background = Color(39, 112, 230)
         }
-        staminaBar.background = Color(39, 112, 230)
+        else {
+            updateView()
+            staminaBar.background = Color.BLACK
+            moveTimer.restart()
+            arrayOf(upButton, downButton, leftButton, rightButton, aButton, bButton).forEach { i ->
+                i.isEnabled = false
+            }
+        }
     }
 
 }
+
 
