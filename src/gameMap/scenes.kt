@@ -11,10 +11,14 @@ import gameMap.IkeaScenes.scenes
 
 class Location(val scenes: MutableMap<Pair<Int,Int>, Location>, val name: String, val coords: Pair<Int,Int>){
     lateinit var description: String
-    lateinit var clue: String
+    var clue: String? = null
 
     init {
         scenes[coords] = this
+        clue = scenes[coords]?.clue
+        if (clue == null) {
+            clue = "..."
+        }
     }
 }
 /**
@@ -199,9 +203,9 @@ object BackroomOfficeScenes: Map("BACKROOMS"){
         securityOffice.clue = "Breakroom 6B is where you want to be"
 
         breakroom6B.description = "<html>An ordinary breakroom—except the food is warm, and the clock always reads 6:66. Something knocks gently from the vending machine.</html>"
-        breakroom6B.clue = "<html> Burnt Access Code (***400), you have found access key, Press A to enter the mangers room and win</html>"
+        breakroom6B.clue = "<html> Burnt Access Code (***400), you have found access key, Press A to enter the mangers room and find him</html>"
 
-        filingVault.description = "<html>Rows of cabinets labeled in foreign symbols. One drawer contains a photo of the player—taken moments ago.</html>"
+        filingVault.description = "<html>Rows of cabinets labeled in foreign symbols. One drawer contains a photo of you—taken moments ago.</html>"
         filingVault.clue = ""
 
         managerOfficeDoor.description = "<html>A thick wooden door sealed by a keypad and scanner. Above it, a plaque: \"M. GRANGER – GENERAL MANAGER.\" It hums softly.</html>"

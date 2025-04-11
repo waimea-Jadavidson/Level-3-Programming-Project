@@ -67,29 +67,29 @@ The program stores data using variables, where:
 - [x] **Global** variables are only used if **genuinely needed**
 
 The program uses OOP classes and objects appropriately, where:
-- [ ] OOP class **names are well-chosen**, relating to their functionality
-- [ ] OOP class names **begin with uppercase**
-- [ ] OOP classes contain **well-chosen data fields**
-- [ ] OOP classes contain **well-chosen methods**
+- [x] OOP class **names are well-chosen**, relating to their functionality
+- [x] OOP class names **begin with uppercase**
+- [x] OOP classes contain **well-chosen data fields**
+- [x] OOP classes contain **well-chosen methods**
 
 The program uses functions appropriately, where:
-- [ ] Function **names are well-chosen**, relating to their functionality 
-- [ ] Functions use **parameters** to pass data into them as needed
-- [ ] Functions provide a **return value** to the calling code if needed
+- [x] Function **names are well-chosen**, relating to their functionality 
+- [x] Functions use **parameters** to pass data into them as needed
+- [x] Functions provide a **return value** to the calling code if needed
 
 ### Game GUI
 
 The game GUI:
-- [ ] Adheres to **common conventions** (e.g. buttons look like buttons, etc.)
+- [x] Adheres to **common conventions** (e.g. buttons look like buttons, etc.)
 
 ### Program Documentation
 
 The program code is well-commented:
-- [ ] **JavaDoc Block comments** are used at the top of each **file** and **function**
-- [ ] Comments accurately describe the **function and behaviour** of the code:
-  - [ ] Defining the **purpose** of functions / key blocks of code
-  - [ ] Explaining the **reason** (the '**why**') of key parts of the code
-  - [ ] Defining function **parameters** and/or **return values**
+- [x] **JavaDoc Block comments** are used at the top of each **file** and **function**
+- [x] Comments accurately describe the **function and behaviour** of the code:
+  - [x] Defining the **purpose** of functions / key blocks of code
+  - [x] Explaining the **reason** (the '**why**') of key parts of the code
+  - [x] Defining function **parameters** and/or **return values**
 
 ### Program Testing
 
@@ -105,28 +105,28 @@ The program has been tested using:
 ### Program Code
 
 Program flexibility and maintainability is aided by:
-- [ ] **Constants** being used to define key values, and used throughout the program
-- [ ] Variable values being **derived at run-time** (from other variables / constants)
-- [ ] Literal values only being used if they **make sense**, and they don't impact program flexibility
+- [x] **Constants** being used to define key values, and used throughout the program
+- [x] Variable values being **derived at run-time** (from other variables / constants)
+- [x] Literal values only being used if they **make sense**, and they don't impact program flexibility
 
 Program flexibility and maintainability is aided by good program structure:
-- [ ] Conditions, branching, loops and functions are used **effectively**
-- [ ] Procedures are **efficient** (minimal iterations, etc.)
-- [ ] **Minimal duplication of code** (instead using loops, or having multiple calls to a single function)
-- [ ] OOP classes are **well-chosen and logical**, with a clearly defined purpose
-- [ ] Functions are **well-chosen and logical**, with a clearly defined purpose
-- [ ] The classes and functions chosen represent a **logical decomposition** of the task
+- [x] Conditions, branching, loops and functions are used **effectively**
+- [x] Procedures are **efficient** (minimal iterations, etc.)
+- [x] **Minimal duplication of code** (instead using loops, or having multiple calls to a single function)
+- [x] OOP classes are **well-chosen and logical**, with a clearly defined purpose
+- [x] Functions are **well-chosen and logical**, with a clearly defined purpose
+- [x] The classes and functions chosen represent a **logical decomposition** of the task
 
 ### Game GUI
 
 The game GUI:
-- [ ] Is **well laid out** with care and attention paid to details
-- [ ] Gives a **good uer experience (UX)**
+- [x] Is **well laid out** with care and attention paid to details
+- [x] Gives a **good uer experience (UX)**
 
 ### Program Documentation
 
 The program code:
-- [ ] Code is laid-out and organised **logically and concisely**
+- [x] Code is laid-out and organised **logically and concisely**
 
 ### Program Testing
 
