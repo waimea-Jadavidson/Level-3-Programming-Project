@@ -23,6 +23,7 @@ import gameMap.IkeaScenes
 import gameMap.MazeScenes
 import gameMap.BackroomOfficeScenes
 import gameMap.Map
+import kotlin.system.exitProcess
 
 
 /**
@@ -54,19 +55,34 @@ class App() {
     var foundPartialClue = false
     var foundFullClue = false
 
-    init {
+    var gameEnd = false
 
-    }
+    private var mapPopUp: MapErrorPopUp = MapErrorPopUp()
+    private var gameOverPopUp: GameEndDialog = GameEndDialog()
 
     fun showClue(){
+        // This sets the clue from the scenes.kt and allows it to be passed into MainWindow
         clue = currentMap.sceneFromPosition(player.playerPosition)?.clue.toString()
         println("CLUE: $clue")
 
+        // Checks if player is in a scene with an important bit of information, then sets a flag off
         if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Ikea Kitchen Trap"){
             foundPartialClue = true
+            println("CLUE FOUND 1")
+        }
+
+        else if (currentMap.sceneFromPosition(player.playerPosition)?.name == "Breakroom 6B"){
+            foundFullClue = true
+            println("CLUE FOUND 2")
+        }
+
+        else if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Manager’s Office Door" && foundFullClue){
+            gameOverPopUp.isVisible = true
+            exitProcess(0)
         }
     }
 
+    // This function changes the map scenes when the player is in the right connection scene
     fun mapChange(){
         if (currentMap.name == "IKEA" &&
             currentMap.sceneFromPosition(player.playerPosition)?.name == "Home Section Maze") {
@@ -78,11 +94,12 @@ class App() {
             currentMap.sceneFromPosition(player.playerPosition)?.name == "Shifting Hallway") {
             currentMap = BackroomOfficeScenes
             println("CURRENT MAP: $currentMap")
-            player.playerPosition = Pair(1,2)
+            player.playerPosition = Pair(0,0)
             println("SCENE: ${currentMap.sceneFromPosition(player.playerPosition)?.name}")
         }
     }
 
+    // Hides clue when switching scenes
     fun hideclue(){
         clue = "..."
         println("CLUE: $clue")
@@ -94,23 +111,31 @@ class App() {
             "u" ->{
                 if (player.playerPosition.second > 0){
                     player.playerPosition = Pair(player.playerPosition.first,(player.playerPosition.second-1))
+                }else{
+                    mapPopUp.isVisible = true
                 }
             }
             "d"->{
                 if((player.playerPosition.second < MAX_HEIGHT)){
                     player.playerPosition = Pair(player.playerPosition.first,(player.playerPosition.second+1))
+                }else{
+                    mapPopUp.isVisible = true
                 }
 
             }
             "l"->{
                 if(player.playerPosition.first > 0){
                     player.playerPosition = Pair((player.playerPosition.first -1),player.playerPosition.second)
+                }else{
+                    mapPopUp.isVisible = true
                 }
 
             }
             "r"->{
                 if(player.playerPosition.first < MAX_WIDTH){
                     player.playerPosition = Pair((player.playerPosition.first +1),player.playerPosition.second)
+                }else{
+                    mapPopUp.isVisible = true
                 }
 
             }
@@ -122,6 +147,74 @@ class App() {
 
 // Player Class here as a legacy feature
 class Player(var playerPosition: Pair<Int, Int>) {}
+
+class GameEndDialog(): JDialog(){
+    init {
+        configureWindow()
+        addControls()
+        setLocationRelativeTo(null)     // Centre the window
+    }
+
+    /**
+     * Setup the dialog window
+     */
+    private fun configureWindow() {
+        title = "GAME OVER!"
+        contentPane.preferredSize = Dimension(400, 200)
+        isResizable = false
+        isModal = true
+        layout = null
+        pack()
+    }
+
+    /**
+     * Populate the window with controls
+     */
+    private fun addControls() {
+        val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 16)
+
+        // Adding <html> to the label text allows it to wrap
+        val message = JLabel("<html> Congrats, you have found the manager. To play again, simply close and reopen the window. </html>")
+        message.bounds = Rectangle(25, 25, 350, 150)
+        message.horizontalAlignment = SwingConstants.CENTER
+        message.font = baseFont
+        add(message)
+    }
+}
+
+class MapErrorPopUp(): JDialog(){
+    init {
+        configureWindow()
+        addControls()
+        setLocationRelativeTo(null)     // Centre the window
+    }
+
+    /**
+     * Setup the dialog window
+     */
+    private fun configureWindow() {
+        title = "Map Error!"
+        contentPane.preferredSize = Dimension(400, 200)
+        isResizable = false
+        isModal = true
+        layout = null
+        pack()
+    }
+
+    /**
+     * Populate the window with controls
+     */
+    private fun addControls() {
+        val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 16)
+
+        // Adding <html> to the label text allows it to wrap
+        val message = JLabel("<html> Error, can't move in the direction </html>")
+        message.bounds = Rectangle(25, 25, 350, 150)
+        message.horizontalAlignment = SwingConstants.CENTER
+        message.font = baseFont
+        add(message)
+    }
+}
 
 
 /**

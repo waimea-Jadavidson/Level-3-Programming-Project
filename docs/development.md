@@ -93,5 +93,31 @@ This was causing a bug where switching between two levels became impossible and 
 I have added a timer to disable ui to slow down player movement so they have to think.
 ![img_19.png](img_19.png)
 
+---
+
+## Date: 11/04/2025
+
+### Map Error Prevention
+
+By adding this pop up dialog it provides a reason for players not being able
+to move in a certain direction due to map boundries
+
+![img_20.png](img_20.png)
+![img_21.png](img_21.png)
+
+---
+
+## Date: 11/04/2025
+
+### Game Win/Lose Ending
+
+I have add a pop up dialog and a end scenario for the game to finish
+
+![img_22.png](img_22.png)
+
+
+![img_23.png](img_23.png)
+![img_24.png](img_24.png)
+
 
 

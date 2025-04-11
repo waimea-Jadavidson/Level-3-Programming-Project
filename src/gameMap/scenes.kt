@@ -168,40 +168,47 @@ object MazeScenes : Map("MAZE"){
 }
 
 object BackroomOfficeScenes: Map("BACKROOMS"){
+    val serverRoom = Location(scenes,"Server Room", Pair(0, 0))
+    val hrDepartment = Location(scenes,"HR Department", Pair(0, 1))
+    val emergencyStairwell = Location(scenes,"Emergency Stairwell", Pair(0, 2))
+
+    // Middle Row
+    val adminCubicles = Location(scenes,"Admin Cubicles", Pair(1, 0))
+    val securityOffice = Location(scenes,"Security Office", Pair(1, 1))
+    val breakroom6B = Location(scenes,"Breakroom 6B", Pair(1, 2))
+
+    // Bottom Row
+    val filingVault = Location(scenes,"Filing Vault", Pair(2, 0))
+    val managerOfficeDoor = Location(scenes,"Manager’s Office Door", Pair(2, 1))
+    val lockedArchives = Location(scenes,"Locked Archives", Pair(2, 2))
+
     init {
-
-        val serverRoom = Location(scenes,"Server Room", Pair(0, 0))
-        val HRDepartment = Location(scenes,"HR Department", Pair(0, 1))
-        val emergencyStairwell = Location(scenes,"Emergency Stairwell", Pair(0, 2))
-
-        // Middle Row
-        val adminCubicles = Location(scenes,"Admin Cubicles", Pair(1, 0))
-        val securityOffice = Location(scenes,"Security Office", Pair(1, 1))
-        val breakroom6B = Location(scenes,"Breakroom 6B", Pair(1, 2))
-
-        // Bottom Row
-        val filingVault = Location(scenes,"Filing Vault", Pair(2, 0))
-        val managerOfficeDoor = Location(scenes,"Manager’s Office Door", Pair(2, 1))
-        val lockedArchives = Location(scenes,"Locked Archives", Pair(2, 2))
-
         serverRoom.description = "<html>Blades of fans spin endlessly. Cables crawl like vines across the floor. The servers beep in a pattern that sounds almost like Morse code.</html>"
+        serverRoom.clue = ""
 
-        HRDepartment.description = "<html>Empty chairs and shredded paperwork. A complaint form sits half-completed: \"He never clocked out. He never left.\"</html>"
+        hrDepartment.description = "<html>Empty chairs and shredded paperwork. A complaint form sits half-completed: \"He never clocked out. He never left.\"</html>"
+        hrDepartment.clue = ""
 
         emergencyStairwell.description = "<html>The stairs descend forever. A red light pulses below. There’s no echo from your footsteps.</html>"
+        emergencyStairwell.clue = ""
 
         adminCubicles.description = "<html>Gray partitions form a soul-crushing maze. Phones ring with no callers. A calendar still shows 1999.</html>"
+        adminCubicles.clue = ""
 
         securityOffice.description = "<html>Monitors flicker between camera feeds and static. One shows Breakroom 6B. A sticky note says: \"He’s still watching.\"</html>"
+        securityOffice.clue = "Breakroom 6B is where you want to be"
 
         breakroom6B.description = "<html>An ordinary breakroom—except the food is warm, and the clock always reads 6:66. Something knocks gently from the vending machine.</html>"
+        breakroom6B.clue = "<html> Burnt Access Code (***400), you have found access key, Press A to enter the mangers room and win</html>"
 
         filingVault.description = "<html>Rows of cabinets labeled in foreign symbols. One drawer contains a photo of the player—taken moments ago.</html>"
+        filingVault.clue = ""
 
         managerOfficeDoor.description = "<html>A thick wooden door sealed by a keypad and scanner. Above it, a plaque: \"M. GRANGER – GENERAL MANAGER.\" It hums softly.</html>"
+        managerOfficeDoor.clue = "<html> Find the access key, then Press A to enter the room and find the manager </html>"
 
         lockedArchives.description = "<html>Files are chained shut and nailed to the wall. A faint heartbeat echoes through the room. One file folder is missing.</html>"
-
+        lockedArchives.clue = ""
 
     }
 }
