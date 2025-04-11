@@ -1,4 +1,4 @@
-# PROJECT NAME HERE
+# SCP 3008
 
 by Jasper Davidson
 
