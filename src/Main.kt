@@ -34,6 +34,7 @@ fun main() {
     val app = App() // Create the app model
     MainWindow(app) // Create and show the UI, using the app model
 
+    app.instructionsPopUp.isVisible = true
 
 }
 
@@ -55,10 +56,12 @@ class App() {
     var foundPartialClue = false
     var foundFullClue = false
 
-    var gameEnd = false
 
     private var mapPopUp: MapErrorPopUp = MapErrorPopUp()
     private var gameOverPopUp: GameEndDialog = GameEndDialog()
+    var instructionsPopUp: InstructionsPopUp = InstructionsPopUp()
+    private var levelMoveDialog: LevelMoveDialog = LevelMoveDialog()
+    private var keySuccessDialog: KeySuccessDialog = KeySuccessDialog()
 
     fun showClue(){
         // This sets the clue from the scenes.kt and allows it to be passed into MainWindow
@@ -68,11 +71,13 @@ class App() {
         // Checks if player is in a scene with an important bit of information, then sets a flag off
         if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Ikea Kitchen Trap"){
             foundPartialClue = true
+            keySuccessDialog.isVisible = true
             println("CLUE FOUND 1")
         }
 
         else if (currentMap.sceneFromPosition(player.playerPosition)?.name == "Breakroom 6B"){
             foundFullClue = true
+            keySuccessDialog.isVisible = true
             println("CLUE FOUND 2")
         }
 
@@ -96,6 +101,9 @@ class App() {
             println("CURRENT MAP: $currentMap")
             player.playerPosition = Pair(0,0)
             println("SCENE: ${currentMap.sceneFromPosition(player.playerPosition)?.name}")
+        }
+        else{
+            levelMoveDialog.isVisible = true
         }
     }
 
@@ -148,6 +156,11 @@ class App() {
 // Player Class here as a legacy feature
 class Player(var playerPosition: Pair<Int, Int>) {}
 
+
+/**
+ * This is the collection of pop-ups used throughout the game and gameplay to give messages to the player.
+ */
+
 class GameEndDialog(): JDialog(){
     init {
         configureWindow()
@@ -182,6 +195,74 @@ class GameEndDialog(): JDialog(){
     }
 }
 
+class LevelMoveDialog(): JDialog(){
+    init {
+        configureWindow()
+        addControls()
+        setLocationRelativeTo(null)     // Centre the window
+    }
+
+    /**
+     * Setup the dialog window
+     */
+    private fun configureWindow() {
+        title = "MAP Error!"
+        contentPane.preferredSize = Dimension(400, 200)
+        isResizable = false
+        isModal = true
+        layout = null
+        pack()
+    }
+
+    /**
+     * Populate the window with controls
+     */
+    private fun addControls() {
+        val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 16)
+
+        // Adding <html> to the label text allows it to wrap
+        val message = JLabel("<html> You are unable to teleport here, please keep exploring. </html>")
+        message.bounds = Rectangle(25, 25, 350, 150)
+        message.horizontalAlignment = SwingConstants.CENTER
+        message.font = baseFont
+        add(message)
+    }
+}
+
+class KeySuccessDialog(): JDialog(){
+    init {
+        configureWindow()
+        addControls()
+        setLocationRelativeTo(null)     // Centre the window
+    }
+
+    /**
+     * Setup the dialog window
+     */
+    private fun configureWindow() {
+        title = "Sucess!"
+        contentPane.preferredSize = Dimension(400, 200)
+        isResizable = false
+        isModal = true
+        layout = null
+        pack()
+    }
+
+    /**
+     * Populate the window with controls
+     */
+    private fun addControls() {
+        val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 16)
+
+        // Adding <html> to the label text allows it to wrap
+        val message = JLabel("<html> Well Done, you have found a Key. Keep looking for more to win the game! </html>")
+        message.bounds = Rectangle(25, 25, 350, 150)
+        message.horizontalAlignment = SwingConstants.CENTER
+        message.font = baseFont
+        add(message)
+    }
+}
+
 class InstructionsPopUp(): JDialog(){
     init {
         configureWindow()
@@ -193,7 +274,7 @@ class InstructionsPopUp(): JDialog(){
      * Setup the dialog window
      */
     private fun configureWindow() {
-        title = "Map Error!"
+        title = "Instructions Pop-Up"
         contentPane.preferredSize = Dimension(400, 200)
         isResizable = false
         isModal = true
