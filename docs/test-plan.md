@@ -14,7 +14,7 @@ e.g the entrance way.
 
 ---
 
-## Player Movement
+## Player Movement Valid
 
 This test will show the player movement functioning, player movement consists of players moving through different scenes
 and levels.
@@ -34,34 +34,103 @@ Details of test data and reasons for selection.
 
 ### Expected Test Result
 
-- Valid Inputs: If the player moves in a valid way, the UI will update after a 3-second cooldown to show the new scene.
-If the player use the right location to teleport, the UI will update after a 3-second cooldown to show the new level.
-
-- Invalid Inputs: If the player moves in a way that goes outside the level boundaries, a pop-up will appear with an error
-and then continues the game without the game break movement. If the player tries to access a new level without being in 
-the correct scene, a pop-up will explain why and then the game will continue without breaking.
+- Valid Inputs: 
+  - If the player moves in a valid way, the UI will update after a 3-second cooldown to show the new scene.
+  If the player use the right location to teleport, the UI will update after a 3-second cooldown to show the new level.
 
 ---
 
-## Finding a Key
+## Player Movement Boundary
+
+This test will show the player movement functioning, player movement consists of players moving through different scenes
+and levels.
+
+### Test Data To Use
+
+Details of test data and reasons for selection.
+
+- Boundary Input
+  - The Player will move through the scenes and the edges of a level, then able to teleport to repeat on a new level.
+
+### Expected Test Result
+
+- Boundary Result:
+  - The game will not break and the player can move through the level in different scenes and levels.
+
+---
+
+## Player Movement Invalid
+
+This test will show the player movement functioning, player movement consists of players moving through different scenes
+and levels.
+
+### Test Data To Use
+
+Details of test data and reasons for selection.
+
+- Invalid Inputs
+  - Trying to move outside the **boundaries** of the map.
+  - Trying to access a new level without being in the right area.
+
+### Expected Test Result
+
+- Invalid Inputs: 
+  - If the player moves in a way that goes outside the level boundaries, a pop-up will appear with an error
+    and then continues the game without the game break movement. If the player tries to access a new level without being in
+    the correct scene, a pop-up will explain why and then the game will continue without breaking.
+
+---
+
+## Finding a Key Valid
 
 This test will show the valid use of pop-up dialog boxes when a key has been successfully found. This is part of my game
 progression.
-
 
 ### Test Data To Use
 
 - Valid Inputs
   - Playing the game normally and finding the hidden keys.
-- Invalid Inputs
-  - Playing the game and trying to skip to the end of the game without finding the keys
 
 ### Expected Test Result
 
 - Valid Inputs: If the keys are found, the pop-up box will appear informing the players of their success.
 
+---
+
+## Finding a Key Invalid
+
+This test will show the valid use of pop-up dialog boxes when a key has been successfully found. This is part of my game
+progression.
+
+### Test Data To Use
+
+- Invalid Inputs
+  - Playing the game and trying to skip to the end of the game without finding the keys.
+
+### Expected Test Result
+
 - Invalid Inputs: If the player tries to finish the game without the keys, nothing will happen and the game won't break
 
 ---
+
+## Game Win State (Valid)
+
+This test will show the game in a winning state, this includes the successful find of both hidden keys and then the player
+going to the "Manager's Office Door" scene and completing the game.
+
+### Test Date to Use
+- Valid Inputs:
+  - The player will play the game, find the two hidden keys and exit the game at the Manager's office door.
+
+### Expected Results
+- Valid Results: 
+  - The game will show the win pop-up dialog and instructions to reset itself for game play.
+
+---
+
+## Game Loss State
+
+This test will show the game in a losses state, the player will not have found all or none of the keys to complete the 
+game.
 
 

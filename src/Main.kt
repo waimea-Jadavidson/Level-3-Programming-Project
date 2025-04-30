@@ -59,7 +59,7 @@ class App() {
 
     private var mapPopUp: MapErrorPopUp = MapErrorPopUp()
     private var gameWinPopUp: GameWinDialog = GameWinDialog()
-    private var gameLossDialog: GameLossDialog = GameLossDialog()
+    private var gameLossPopUp: GameLossDialog = GameLossDialog()
     var instructionsPopUp: InstructionsPopUp = InstructionsPopUp()
     private var levelMoveDialog: LevelMoveDialog = LevelMoveDialog()
     private var keySuccessDialog: KeySuccessDialog = KeySuccessDialog()
@@ -84,12 +84,12 @@ class App() {
     }
 
     fun gameWinLoss(){
-        if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Manger's Officer Door"){
+        if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Manger's Office Door"){
             if(foundPartialClue && foundFullClue){
                 gameWinPopUp.isVisible = true
                 exitProcess(0)
             }else{
-                gameLossDialog.isVisible = true
+                gameLossPopUp.isVisible = true
                 exitProcess(0)
             }
         }
@@ -297,7 +297,7 @@ class KeySuccessDialog(): JDialog(){
         val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 16)
 
         // Adding <html> to the label text allows it to wrap
-        val message = JLabel("<html> Well Done, you have found a Key. Keep looking for more to win the game! </html>")
+        val message = JLabel("<html> Well Done, you have found a Key. </html>")
         message.bounds = Rectangle(25, 25, 350, 150)
         message.horizontalAlignment = SwingConstants.CENTER
         message.font = baseFont
