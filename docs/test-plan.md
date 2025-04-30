@@ -26,8 +26,10 @@ Details of test data and reasons for selection.
 - Valid Inputs
   - Moving through the map using NSEW buttons where they are in the bounds of the map.
   - Moving through the levels using the B button when they are in the right location.
+- Boundary
+  - The Player can move through full map, moving through the 3 different levels and allowing to go the end.
 - Invalid Inputs
-  - Trying to move outside the boundaries of the map.
+  - Trying to move outside the **boundaries** of the map.
   - Trying to access a new level without being in the right area.
 
 ### Expected Test Result
@@ -49,11 +51,16 @@ progression.
 
 ### Test Data To Use
 
-Details of test data and reasons for selection. Details of test data and reasons for selection. Details of test data and reasons for selection.
+- Valid Inputs
+  - Playing the game normally and finding the hidden keys.
+- Invalid Inputs
+  - Playing the game and trying to skip to the end of the game without finding the keys
 
 ### Expected Test Result
 
-Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen. Statement detailing what should happen.
+- Valid Inputs: If the keys are found, the pop-up box will appear informing the players of their success.
+
+- Invalid Inputs: If the player tries to finish the game without the keys, nothing will happen and the game won't break
 
 ---
 

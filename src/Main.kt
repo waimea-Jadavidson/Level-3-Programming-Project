@@ -58,7 +58,8 @@ class App() {
 
 
     private var mapPopUp: MapErrorPopUp = MapErrorPopUp()
-    private var gameOverPopUp: GameEndDialog = GameEndDialog()
+    private var gameWinPopUp: GameWinDialog = GameWinDialog()
+    private var gameLossDialog: GameLossDialog = GameLossDialog()
     var instructionsPopUp: InstructionsPopUp = InstructionsPopUp()
     private var levelMoveDialog: LevelMoveDialog = LevelMoveDialog()
     private var keySuccessDialog: KeySuccessDialog = KeySuccessDialog()
@@ -80,10 +81,17 @@ class App() {
             keySuccessDialog.isVisible = true
             println("CLUE FOUND 2")
         }
+    }
 
-        else if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Manager’s Office Door" && foundFullClue){
-            gameOverPopUp.isVisible = true
-            exitProcess(0)
+    fun gameWinLoss(){
+        if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Manger's Officer Door"){
+            if(foundPartialClue && foundFullClue){
+                gameWinPopUp.isVisible = true
+                exitProcess(0)
+            }else{
+                gameLossDialog.isVisible = true
+                exitProcess(0)
+            }
         }
     }
 
@@ -95,7 +103,7 @@ class App() {
             player.playerPosition = Pair(0,0)
             println("CURRENT MAP: $currentMap")
         }
-       else if(currentMap.name == "MAZE" &&
+        else if(currentMap.name == "MAZE" &&
             currentMap.sceneFromPosition(player.playerPosition)?.name == "Shifting Hallway") {
             currentMap = BackroomOfficeScenes
             println("CURRENT MAP: $currentMap")
@@ -161,7 +169,7 @@ class Player(var playerPosition: Pair<Int, Int>) {}
  * This is the collection of pop-ups used throughout the game and gameplay to give messages to the player.
  */
 
-class GameEndDialog(): JDialog(){
+class GameWinDialog(): JDialog(){
     init {
         configureWindow()
         addControls()
@@ -188,6 +196,40 @@ class GameEndDialog(): JDialog(){
 
         // Adding <html> to the label text allows it to wrap
         val message = JLabel("<html> Congrats, you have found the manager. To play again, simply close and reopen the window. </html>")
+        message.bounds = Rectangle(25, 25, 350, 150)
+        message.horizontalAlignment = SwingConstants.CENTER
+        message.font = baseFont
+        add(message)
+    }
+}
+
+class GameLossDialog(): JDialog(){
+    init {
+        configureWindow()
+        addControls()
+        setLocationRelativeTo(null)     // Centre the window
+    }
+
+    /**
+     * Setup the dialog window
+     */
+    private fun configureWindow() {
+        title = "GAME OVER!"
+        contentPane.preferredSize = Dimension(400, 200)
+        isResizable = false
+        isModal = true
+        layout = null
+        pack()
+    }
+
+    /**
+     * Populate the window with controls
+     */
+    private fun addControls() {
+        val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 16)
+
+        // Adding <html> to the label text allows it to wrap
+        val message = JLabel("<html> You failed the game, the manager was not happy with you. </html>")
         message.bounds = Rectangle(25, 25, 350, 150)
         message.horizontalAlignment = SwingConstants.CENTER
         message.font = baseFont
@@ -275,7 +317,7 @@ class InstructionsPopUp(): JDialog(){
      */
     private fun configureWindow() {
         title = "Instructions Pop-Up"
-        contentPane.preferredSize = Dimension(400, 200)
+        contentPane.preferredSize = Dimension(500, 600)
         isResizable = false
         isModal = true
         layout = null
@@ -289,8 +331,23 @@ class InstructionsPopUp(): JDialog(){
         val baseFont = Font(Font.SANS_SERIF, Font.PLAIN, 16)
 
         // Adding <html> to the label text allows it to wrap
-        val message = JLabel("<html> Welcome to SCP 3008. </html>")
-        message.bounds = Rectangle(25, 25, 350, 150)
+        val message = JLabel("""
+        <html>
+        <b>Controls:</b><br>
+        • W / A / S / D = Move North, West, South, East<br>
+        • A Button = Check for Clues<br>
+        • B Button = Interact with Scenes (change maps, open doors)<br><br>
+        <b>Goals:</b><br>
+        1. Explore the infinite IKEA and uncover clues left behind by other wanderers.<br>
+        2. Collect all parts of the burned access code (e.g. "757***") from key scenes.<br>
+        3. Reach the Manager’s Office and input the full access code to escape.<br><br>
+        <b>Important Mechanics:</b><br>
+        • Some areas use teleportation — these are <u>one-way only</u>, plan your path wisely.<br>
+        • If you reach the final door without all access code parts, the game will fail.<br><br>
+        Stay alert. Clues are hidden where you'd least expect them.
+        </html>
+    """.trimIndent())
+        message.bounds = Rectangle(25, 25, 450, 550)
         message.horizontalAlignment = SwingConstants.CENTER
         message.font = baseFont
         add(message)
@@ -513,6 +570,7 @@ class MainWindow(val app: App) : JFrame(), ActionListener {
 
             bButton ->{
                 app.mapChange()
+                app.gameWinLoss()
                 enableUI = false
             }
 
