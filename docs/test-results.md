@@ -41,7 +41,7 @@ Details of test data and reasons for selection.
 
 ![java_PiOfFtK1Sr.gif](images%2Fjava_PiOfFtK1Sr.gif)
 
-As shown in this test the player can move through the map and to the edges of the level and then was able to teleport to the new level. This mets my expected rest outcome in my [Test Plan](test-plan.md).
+As shown in this test the player can move through the map and to the edges of the level and then was able to teleport to the new level. This meets my expected rest outcome in my [Test Plan](test-plan.md).
 
 ---
 
@@ -62,7 +62,7 @@ Details of test data and reasons for selection.
 
 ![java_JPY3jDgXtT.gif](images%2Fjava_JPY3jDgXtT.gif)
 
-This shows the successful outcome of this test, if the player tries to do a invalid input they are met with a pop-up dialog box explaining why. This mets my expected rest outcome in my [Test Plan](test-plan.md).
+This shows the successful outcome of this test, if the player tries to do a invalid input they are met with a pop-up dialog box explaining why. This meets my expected rest outcome in my [Test Plan](test-plan.md).
 
 ---
 
@@ -80,7 +80,7 @@ progression.
 
 ![java_DkW0kuouk7.gif](images%2Fjava_DkW0kuouk7.gif)
 
-This test shows the successful outcome of this test, the game respons with pop-up dialogs when the player finds the hidden keys in the game. This mets my expected rest outcome in my [Test Plan](test-plan.md).
+This test shows the successful outcome of this test, the game respons with pop-up dialogs when the player finds the hidden keys in the game. This meets my expected rest outcome in my [Test Plan](test-plan.md).
 
 ---
 

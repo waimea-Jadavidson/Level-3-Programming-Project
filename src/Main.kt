@@ -75,7 +75,7 @@ class App() {
             keySuccessDialog.isVisible = true
             println("CLUE FOUND 1")
         }
-
+        //
         else if (currentMap.sceneFromPosition(player.playerPosition)?.name == "Breakroom 6B"){
             foundFullClue = true
             keySuccessDialog.isVisible = true
@@ -84,7 +84,7 @@ class App() {
     }
 
     fun gameWinLoss(){
-        if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Manger's Office Door"){
+        if(currentMap.sceneFromPosition(player.playerPosition)?.name == "Manager’s Office Door"){
             if(foundPartialClue && foundFullClue){
                 gameWinPopUp.isVisible = true
                 exitProcess(0)
