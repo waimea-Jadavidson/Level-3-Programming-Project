@@ -26,11 +26,6 @@ Details of test data and reasons for selection.
 - Valid Inputs
   - Moving through the map using NSEW buttons where they are in the bounds of the map.
   - Moving through the levels using the B button when they are in the right location.
-- Boundary
-  - The Player can move through full map, moving through the 3 different levels and allowing to go the end.
-- Invalid Inputs
-  - Trying to move outside the **boundaries** of the map.
-  - Trying to access a new level without being in the right area.
 
 ### Expected Test Result
 
