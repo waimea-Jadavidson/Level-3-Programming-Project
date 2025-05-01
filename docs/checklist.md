@@ -48,8 +48,8 @@ The program has been tested and there is documented evidence that:
   - [x] player movement
   - [x] other player actions
   - [ ] player win / lose states
-- [ ] **Valid (expected) data** has been used to test **all data inputs**
-- [ ] Where tests have failed, **fixes** are discussed and **tests re-run**
+- [x] **Valid (expected) data** has been used to test **all data inputs**
+- [x] Where tests have failed, **fixes** are discussed and **tests re-run**
 
 ---
 
