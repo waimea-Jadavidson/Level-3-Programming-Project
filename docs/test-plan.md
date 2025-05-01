@@ -108,7 +108,7 @@ progression.
 
 ---
 
-## Game Win State (Valid)
+## Game State (Valid/Win)
 
 This test will show the game in a winning state, this includes the successful find of both hidden keys and then the player
 going to the "Manager's Office Door" scene and completing the game.
@@ -123,9 +123,17 @@ going to the "Manager's Office Door" scene and completing the game.
 
 ---
 
-## Game Loss State
+## Game State (Invalid/Loss)
 
-This test will show the game in a losses state, the player will not have found all or none of the keys to complete the 
+This test will show the game in a losses state, the player will not have found all or
+none of the keys to complete the 
 game.
 
+### Test Data to Use
+- Invalid Inputs:
+  - The player attempts to finish the game without collecting any of the keys.
+
+### Expected Results
+- Invalid Results:
+  - The game will show the loss pop-up dialog and instructions to reset itself for new game.
 
