@@ -110,8 +110,12 @@ class App() {
             player.playerPosition = Pair(0,0)
             println("SCENE: ${currentMap.sceneFromPosition(player.playerPosition)?.name}")
         }
+
         else{
-            levelMoveDialog.isVisible = true
+            if(currentMap.name != "BACKROOMs" && currentMap.sceneFromPosition(player.playerPosition)?.name != "" +
+                "Manager’s Office Door"){
+                levelMoveDialog.isVisible = true
+            }
         }
     }
 

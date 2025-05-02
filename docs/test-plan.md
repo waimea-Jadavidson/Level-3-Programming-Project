@@ -137,3 +137,17 @@ game.
 - Invalid Results:
   - The game will show the loss pop-up dialog and instructions to reset itself for new game.
 
+---
+
+## Game Setup
+
+This test will show the game successfully starting up. The instructions will pop up, then when the player closes them start the game.
+
+### Test Data to Use
+- Input
+  - I will start the game, the instructions will pop-up. Then I will close them and play the game.
+
+### Expected Results
+- Outcome
+  - The game will function correctly without it breaking.
+

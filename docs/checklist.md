@@ -44,10 +44,10 @@ The program code:
 
 The program has been tested and there is documented evidence that:
 - [x] The game is **fully functional**, showing testing of:
-  - [ ] game setup
+  - [x] game setup
   - [x] player movement
   - [x] other player actions
-  - [] player win / lose states
+  - [x] player win / lose states
 - [x] **Valid (expected) data** has been used to test **all data inputs**
 - [x] Where tests have failed, **fixes** are discussed and **tests re-run**
 

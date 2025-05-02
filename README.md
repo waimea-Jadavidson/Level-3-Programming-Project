@@ -24,5 +24,17 @@ The project is written in the [Kotlin](https://kotlinlang.org) programming langu
 
 ## Project Description
 
-This game is a horror/exploration based adventure of SCP 3008. For the uninitiated that is a non-euclidean haunted IKEA
+SCP 3008 is a psychological horror and exploration game based on the SCP Foundation’s infamous SCP-3008, also known as the Infinite IKEA.
+You awaken in a deserted IKEA that twists into an endless, shifting maze. The doors are gone. The lights flicker. Something is watching. Wanderers have come before you—and left behind clues, warnings, and pieces of a way out.
+Your mission:
+
+    Explore the unnaturally large IKEA, uncovering clues and navigating between surreal sections.
+
+    Collect fragments of a burnt access code to unlock the Manager’s Office door.
+
+    Beware—teleports are one-way only, and entering the final area without the full code results in failure.
+
+    Use logic, memory, and attention to detail to survive and escape.
+
+Will you find the Manager and escape the maze... or become just another shopping cart left behind?
 
